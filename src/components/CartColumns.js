@@ -1,11 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const CartColumns = () => {
-  return <h4>cart columns</h4>
-}
+  return (
+    <Wrapperr>
+      <div className="content">
+        <h5>item</h5>
+        <h5>price</h5>
+        <h5>quantity</h5>
+        <h5>subtotal</h5>
+        <span></span>
+      </div>
+      <hr />
+    </Wrapperr>
+  );
+};
 
-const Wrapper = styled.div`
+const Wrapperr = styled.div`
   display: none;
   @media (min-width: 776px) {
     display: block;
@@ -29,6 +40,6 @@ const Wrapper = styled.div`
       margin-bottom: 3rem;
     }
   }
-`
+`;
 
-export default CartColumns
+export default CartColumns;
