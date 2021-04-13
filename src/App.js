@@ -12,6 +12,8 @@ import {
   SingleProduct,
   Checkout,
 } from './pages';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -20,28 +22,34 @@ function App() {
         <Navbar />
         <Sidebar />
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home />
           </Route>
-          <Route exact path="/about">
+          <Route exact path='/about'>
             <About />
           </Route>
-          <Route exact path="/cart">
+          <Route exact path='/cart'>
             <Cart />
           </Route>
-          <Route exact path="/products">
+          <Route exact path='/products'>
             <Products />
           </Route>
-          <Route exact path="/private">
+          <Route exact path='/private'>
             <Private />
           </Route>
-          <Route exact path="/products/:id">
+          <Route exact path='/products/:id'>
             <SingleProduct />
           </Route>
-          <Route exact path="/checkout">
+          <Route exact path='/checkout'>
             <Checkout />
           </Route>
-          <Route path="*">
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+          <Route exact path='/signUp'>
+            <SignUp />
+          </Route>
+          <Route path='*'>
             <Error />
           </Route>
         </Switch>
