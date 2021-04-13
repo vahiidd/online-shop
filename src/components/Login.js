@@ -8,6 +8,7 @@ const Login = () => {
   });
 
   const [token, setToken] = useState('');
+  const [error, setError] = useState('');
 
   const changeHandler = (e) => {
     setForm((pre) => ({ ...pre, [e.target.name]: e.target.value }));
@@ -26,6 +27,11 @@ const Login = () => {
           },
         }
       );
+      if (!res.ok) {
+        const err = await res.json();
+        setError(err);
+        return;
+      }
       const data = await res.json();
       setToken(data.token);
       console.log(data);
@@ -54,6 +60,12 @@ const Login = () => {
         />
         <button type='submit'>Login</button>
       </form>
+      {error &&
+        Object.entries(error).map(([key, value]) => (
+          <div>
+            {key} ==== {value}
+          </div>
+        ))}
     </div>
   );
 };
