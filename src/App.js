@@ -12,8 +12,8 @@ import {
   SingleProduct,
   Checkout,
 } from './pages';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
+import Login from './features/login/Login';
+import SignUp from './features/signUp/SignUp';
 
 function App() {
   return (
