@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const signUpUser = createAsyncThunk(
   'signUp/signUpUser',
-  async (form, { rejectWithValue }) => {
+  async ({ form, history }, { rejectWithValue }) => {
+    console.log('vahid', history);
     const res = await fetch(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/signup',
       {
@@ -14,10 +15,12 @@ export const signUpUser = createAsyncThunk(
       }
     );
     if (!res.ok) {
-      const err = res.json();
+      const err = await res.json();
+      history.push('/signUpResult');
       return rejectWithValue(err);
     }
     const data = await res.json();
+    history.push('/signUpResult');
     return data;
   }
 );
@@ -25,7 +28,7 @@ export const signUpUser = createAsyncThunk(
 const signUpSlice = createSlice({
   name: 'signUp',
   initialState: {
-    signUpMessage: {},
+    successMessage: {},
     status: 'idle',
     error: null,
   },
@@ -36,7 +39,7 @@ const signUpSlice = createSlice({
     },
     [signUpUser.fulfilled]: (state, action) => {
       state.status = 'success';
-      state.signUpMessage = action.payload;
+      state.successMessage = action.payload;
     },
     [signUpUser.rejected]: (state, action) => {
       state.status = 'fail';
@@ -45,6 +48,6 @@ const signUpSlice = createSlice({
   },
 });
 
-export const selectSignUpMessage = (state) => state.signUp.signUpMessage;
+export const selectSignUp = (state) => state.signUp;
 
 export default signUpSlice.reducer;

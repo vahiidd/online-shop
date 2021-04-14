@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { signUpUser } from './signUpSlice';
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -8,37 +13,13 @@ const SignUp = () => {
     password: '',
   });
 
-  const [error, setError] = useState('');
-
   const changeHandler = (e) => {
     setForm((pre) => ({ ...pre, [e.target.name]: e.target.value }));
   };
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch(
-        'https://online-shop-web-mapsabootcamp.fandogh.cloud/signup',
-        {
-          method: 'POST',
-          body: JSON.stringify(form),
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
-      );
-
-      if (!res.ok) {
-        const err = await res.json();
-        setError(err);
-        return;
-      }
-
-      const data = await res.json();
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(signUpUser({ form, history }));
   };
 
   return (
@@ -70,12 +51,6 @@ const SignUp = () => {
         />
         <button type='submit'>SignUp</button>
       </form>
-      {error &&
-        Object.entries(error).map(([key, value]) => (
-          <div>
-            {key} === {value}
-          </div>
-        ))}
     </div>
   );
 };

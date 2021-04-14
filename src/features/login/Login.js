@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { loginUser, selectLogin } from './loginSlice';
 
 const Login = () => {
+  const { login, status, error } = useSelector(selectLogin);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [form, setForm] = useState({
     username: '',
     password: '',
   });
 
   const [token, setToken] = useState('');
-  const [error, setError] = useState('');
 
   const changeHandler = (e) => {
     setForm((pre) => ({ ...pre, [e.target.name]: e.target.value }));
@@ -16,28 +21,7 @@ const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch(
-        'https://online-shop-web-mapsabootcamp.fandogh.cloud/login/',
-        {
-          method: 'POST',
-          body: JSON.stringify(form),
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
-      );
-      if (!res.ok) {
-        const err = await res.json();
-        setError(err);
-        return;
-      }
-      const data = await res.json();
-      setToken(data.token);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(loginUser({ form, history }));
   };
 
   return (

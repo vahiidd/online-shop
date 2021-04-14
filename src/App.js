@@ -14,6 +14,7 @@ import {
 } from './pages';
 import Login from './features/login/Login';
 import SignUp from './features/signUp/SignUp';
+import SignUpResult from './features/signUp/SignUpResult';
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route exact path='/signUp'>
             <SignUp />
+          </Route>
+          <Route exact path='/signUpResult'>
+            <SignUpResult />
           </Route>
           <Route path='*'>
             <Error />

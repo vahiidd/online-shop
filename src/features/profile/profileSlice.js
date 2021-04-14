@@ -12,7 +12,7 @@ export const getSpecificProfile = createAsyncThunk(
       }
     );
     if (!res.ok) {
-      const err = res.json();
+      const err = await res.json();
       return rejectWithValue(err);
     }
     const data = await res.json();

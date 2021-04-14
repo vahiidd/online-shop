@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const loginUser = createAsyncThunk(
   'login/loginUser ',
-  async (form, { rejectWithValue }) => {
+  async ({ form, history }, { rejectWithValue }) => {
     const res = await fetch(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/login/',
       {
@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk(
       }
     );
     if (!res.ok) {
-      const err = err.json();
+      const err = await res.json();
       return rejectWithValue(err);
     }
     const data = await res.json();
@@ -44,6 +44,6 @@ const loginSlice = createSlice({
   },
 });
 
-export const selectLogin = (state) => state.login.login;
+export const selectLogin = (state) => state.login;
 
 export default loginSlice.reducer;

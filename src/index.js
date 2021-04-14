@@ -7,14 +7,18 @@ import { FilterProvider } from './context/filter_context';
 import { CartProvider } from './context/cart_context';
 import { UserProvider } from './context/user_context';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 ReactDOM.render(
-  <ProductsProvider>
-    <FilterProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </FilterProvider>
-  </ProductsProvider>,
+  <Provider store={store}>
+    <ProductsProvider>
+      <FilterProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </FilterProvider>
+    </ProductsProvider>
+  </Provider>,
   document.getElementById('root')
 );
