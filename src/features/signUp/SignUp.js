@@ -19,7 +19,8 @@ const SignUp = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(signUpUser({ form, history }));
+    dispatch(signUpUser(form));
+    history.push('/signUpResult');
   };
 
   return (

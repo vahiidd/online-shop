@@ -15,6 +15,10 @@ const SignUpResult = () => {
     }
   };
 
+  if (status === 'loading') {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div>
       <h1>{successMessage && successMessage.message}</h1>

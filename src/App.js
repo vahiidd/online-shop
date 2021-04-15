@@ -15,6 +15,7 @@ import {
 import Login from './features/login/Login';
 import SignUp from './features/signUp/SignUp';
 import SignUpResult from './features/signUp/SignUpResult';
+import LoginResult from './features/login/LoginResult';
 
 function App() {
   return (
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path='/signUpResult'>
             <SignUpResult />
+          </Route>
+          <Route exact path='/loginResult'>
+            <LoginResult />
           </Route>
           <Route path='*'>
             <Error />

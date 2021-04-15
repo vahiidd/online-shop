@@ -7,7 +7,7 @@ export const getSpecificProfile = createAsyncThunk(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/edit_profile/update_profile/',
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Basic ${token}`,
         },
       }
     );
@@ -42,6 +42,6 @@ const profileSlice = createSlice({
   },
 });
 
-export const selectProfile = (state) => state.profile.profile;
+export const selectProfile = (state) => state.profile;
 
 export default profileSlice.reducer;

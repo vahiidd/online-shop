@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useProductsContext } from '../context/products_context';
 import { useCartContext } from '../context/cart_context';
 import { useUserContext } from '../context/user_context';
+import { useSelector } from 'react-redux';
+import { selectLogin } from '../features/login/loginSlice';
+import { selectProfile } from '../features/profile/profileSlice';
 
 const CartButtons = () => {
   const { closeSidebar } = useProductsContext();
   const { total_items } = useCartContext();
+  const { status: loginStatus } = useSelector(selectLogin);
+  const { profile, status: profileStatus } = useSelector(selectProfile);
+  const [loginElement, setLoginElement] = useState(
+    <Link to='/login'>
+      <button type='botton' className='auth-btn'>
+        Login
+        <FaUserPlus />
+      </button>
+    </Link>
+  );
+
+  useEffect(() => {
+    if (loginStatus === 'success' && profileStatus === 'success') {
+      setLoginElement(<h4>{profile[0].user}</h4>);
+    } else {
+      setLoginElement(
+        <Link to='/login'>
+          <button type='botton' className='auth-btn'>
+            Login
+            <FaUserPlus />
+          </button>
+        </Link>
+      );
+    }
+  }, [loginStatus, profile, profileStatus]);
   return (
     <Wrapper className='cart-btn-wrapper'>
       <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
@@ -18,12 +46,7 @@ const CartButtons = () => {
           <span className='cart-value'>{total_items}</span>
         </span>
       </Link>
-      <Link to='/login'>
-        <button type='botton' className='auth-btn'>
-          Login
-          <FaUserPlus />
-        </button>
-      </Link>
+      {loginElement}
     </Wrapper>
   );
 };

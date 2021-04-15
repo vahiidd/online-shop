@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+let loginForm = '';
+
 export const loginUser = createAsyncThunk(
   'login/loginUser ',
-  async ({ form, history }, { rejectWithValue }) => {
+  async (form, { rejectWithValue }) => {
+    loginForm = form;
     const res = await fetch(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/login/',
       {
@@ -25,7 +28,7 @@ export const loginUser = createAsyncThunk(
 const loginSlice = createSlice({
   name: 'login',
   initialState: {
-    login: {},
+    token: {},
     status: 'idle',
     error: null,
   },
@@ -35,7 +38,7 @@ const loginSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, action) => {
       state.status = 'success';
-      state.login = action.payload;
+      state.token = btoa(`${loginForm.username}:${loginForm.password}`);
     },
     [loginUser.rejected]: (state, action) => {
       state.status = 'fail';

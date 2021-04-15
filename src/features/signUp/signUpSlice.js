@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const signUpUser = createAsyncThunk(
   'signUp/signUpUser',
-  async ({ form, history }, { rejectWithValue }) => {
-    console.log('vahid', history);
+  async (form, { rejectWithValue }) => {
     const res = await fetch(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/signup',
       {
@@ -16,11 +15,9 @@ export const signUpUser = createAsyncThunk(
     );
     if (!res.ok) {
       const err = await res.json();
-      history.push('/signUpResult');
       return rejectWithValue(err);
     }
     const data = await res.json();
-    history.push('/signUpResult');
     return data;
   }
 );
