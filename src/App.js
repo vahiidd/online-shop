@@ -16,6 +16,7 @@ import Login from './features/login/Login';
 import SignUp from './features/signUp/SignUp';
 import SignUpResult from './features/signUp/SignUpResult';
 import LoginResult from './features/login/LoginResult';
+import Profile from './features/profile/Profile';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
           </Route>
           <Route exact path='/loginResult'>
             <LoginResult />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile />
           </Route>
           <Route path='*'>
             <Error />

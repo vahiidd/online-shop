@@ -25,7 +25,14 @@ const CartButtons = () => {
 
   useEffect(() => {
     if (loginStatus === 'success' && profileStatus === 'success') {
-      setLoginElement(<h4>{profile[0].user}</h4>);
+      setLoginElement(
+        <Link to='/profile'>
+          <button type='botton' className='auth-btn'>
+            {profile[0].user}
+            <FaUserPlus />
+          </button>
+        </Link>
+      );
     } else {
       setLoginElement(
         <Link to='/login'>
