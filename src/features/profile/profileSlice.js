@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const getSpecificProfile = createAsyncThunk(
-  'user/getSpecificProfile',
+  'profile/getSpecificProfile',
   async (token, { rejectWithValue }) => {
     const res = await fetch(
       'https://online-shop-web-mapsabootcamp.fandogh.cloud/edit_profile/update_profile/',
@@ -36,7 +36,7 @@ const profileSlice = createSlice({
       state.profile = action.payload;
     },
     [getSpecificProfile.rejected]: (state, action) => {
-      state.state = 'fail';
+      state.status = 'fail';
       state.error = action.payload;
     },
   },

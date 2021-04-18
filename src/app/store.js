@@ -3,6 +3,7 @@ import counterReducer from '../features/counter/counterSlice';
 import profileReducer from '../features/profile/profileSlice';
 import loginReducer from '../features/login/loginSlice';
 import signUpReducer from '../features/signUp/signUpSlice';
+import productCategoryReducer from '../features/productCategory/productCategorySlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     profile: profileReducer,
     login: loginReducer,
     signUp: signUpReducer,
+    productCategory: productCategoryReducer,
   },
 });
