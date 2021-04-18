@@ -1,10 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useFilterContext } from '../context/filter_context';
+import { selectProductList } from '../features/productList/productListSlice';
 import GridView from './GridView';
 import ListView from './ListView';
 
 const ProductList = () => {
-  const { filtered_products: products, grid_view } = useFilterContext();
+  const { grid_view } = useFilterContext();
+  const { list: products, status } = useSelector(selectProductList);
+
+  if (status === 'loading') {
+    return <h1>Loading ...</h1>;
+  }
+
   if (products.length < 1) {
     return (
       <h5 style={{ textTransform: 'none' }}>
@@ -12,9 +20,9 @@ const ProductList = () => {
       </h5>
     );
   }
-  if (grid_view === false){
-    return <ListView products={products} />
-  }
+  // if (grid_view === false) {
+  //   return <ListView products={products} />;
+  // }
   return <GridView products={products} />;
 };
 

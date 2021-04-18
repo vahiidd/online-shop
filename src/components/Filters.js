@@ -8,6 +8,7 @@ import productCategorySlice, {
   selectProductCategory,
 } from '../features/productCategory/productCategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getproductList } from '../features/productList/productListSlice';
 
 const Filters = () => {
   const {
@@ -39,6 +40,10 @@ const Filters = () => {
     dispatch(getProductCategories());
   }, []);
 
+  const handleClickCategory = (e, category) => {
+    dispatch(getproductList(category));
+  };
+
   if (status === 'loading') {
     return <h1>loading...</h1>;
   }
@@ -63,7 +68,7 @@ const Filters = () => {
               {categories.map((c, index) => (
                 <button
                   key={index}
-                  onClick={updateFilters}
+                  onClick={(e) => handleClickCategory(e, c)}
                   type='button'
                   name='category'
                   className={`${

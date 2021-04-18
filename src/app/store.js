@@ -4,6 +4,7 @@ import profileReducer from '../features/profile/profileSlice';
 import loginReducer from '../features/login/loginSlice';
 import signUpReducer from '../features/signUp/signUpSlice';
 import productCategoryReducer from '../features/productCategory/productCategorySlice';
+import productListReducer from '../features/productList/productListSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     login: loginReducer,
     signUp: signUpReducer,
     productCategory: productCategoryReducer,
+    productList: productListReducer,
   },
 });
