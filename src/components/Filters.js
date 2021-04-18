@@ -8,7 +8,10 @@ import productCategorySlice, {
   selectProductCategory,
 } from '../features/productCategory/productCategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getproductList } from '../features/productList/productListSlice';
+import {
+  getAllProductsList,
+  getproductList,
+} from '../features/productList/productListSlice';
 
 const Filters = () => {
   const {
@@ -40,6 +43,10 @@ const Filters = () => {
     dispatch(getProductCategories());
   }, []);
 
+  const handleClickAllCategory = () => {
+    dispatch(getAllProductsList());
+  };
+
   const handleClickCategory = (e, category) => {
     dispatch(getproductList(category));
   };
@@ -65,6 +72,14 @@ const Filters = () => {
           <div className='form-control'>
             <h5>category</h5>
             <div>
+              <button
+                key={'allClickButton'}
+                type='button'
+                name='category'
+                onClick={handleClickAllCategory}
+              >
+                All
+              </button>
               {categories.map((c, index) => (
                 <button
                   key={index}
