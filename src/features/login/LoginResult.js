@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -33,7 +34,7 @@ const LoginResult = () => {
             </h1>
           ))}
       </h1>
-      <button onClick={clickHandler}>continue</button>
+      <Button onClick={clickHandler}>continue</Button>
     </div>
   );
 };

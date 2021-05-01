@@ -1,3 +1,4 @@
+import { Button, TextField } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -24,33 +25,45 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: 10 }}>
       <form onSubmit={submit}>
-        <input
-          placeholder='username'
-          name='username'
-          value={form.username}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder='email'
-          name='email'
-          value={form.email}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder='phone'
-          name='phone'
-          value={form.phone}
-          onChange={changeHandler}
-        />
-        <input
-          placeholder='password'
-          name='password'
-          value={form.password}
-          onChange={changeHandler}
-        />
-        <button type='submit'>SignUp</button>
+        <div>
+          <TextField
+            placeholder='username'
+            name='username'
+            value={form.username}
+            onChange={changeHandler}
+          />
+        </div>
+
+        <div>
+          <TextField
+            placeholder='email'
+            name='email'
+            value={form.email}
+            onChange={changeHandler}
+          />
+        </div>
+
+        <div>
+          <TextField
+            placeholder='phone'
+            name='phone'
+            value={form.phone}
+            onChange={changeHandler}
+          />
+        </div>
+
+        <div>
+          <TextField
+            placeholder='password'
+            name='password'
+            value={form.password}
+            onChange={changeHandler}
+          />
+        </div>
+
+        <Button type='submit'>SignUp</Button>
       </form>
     </div>
   );

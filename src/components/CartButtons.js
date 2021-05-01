@@ -27,9 +27,8 @@ const CartButtons = () => {
     if (loginStatus === 'success' && profileStatus === 'success') {
       setLoginElement(
         <Link to='/profile'>
-          <button type='botton' className='auth-btn'>
+          <button type='botton' className='auth-btn' style={{margin: '0 20px'}}>
             {profile[0].user}
-            <FaUserPlus />
           </button>
         </Link>
       );

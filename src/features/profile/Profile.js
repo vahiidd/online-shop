@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLogin } from '../login/loginSlice';
 import { selectProfile } from './profileSlice';
+import { Button, TextField } from '@material-ui/core';
 
 const Profile = () => {
   const { profile } = useSelector(selectProfile);
@@ -38,8 +39,8 @@ const Profile = () => {
     <div>
       <form onSubmit={updateProfile}>
         <div>
-          <label>username</label>
-          <input
+          <TextField
+            label='username'
             type='text'
             name='username'
             value={form.username}
@@ -47,8 +48,8 @@ const Profile = () => {
           />
         </div>
         <div>
-          <label>first name</label>
-          <input
+          <TextField
+            label='first name'
             type='text'
             name='first_name'
             value={form.first_name}
@@ -56,8 +57,8 @@ const Profile = () => {
           />
         </div>
         <div>
-          <label>last name</label>
-          <input
+          <TextField
+            label='last name'
             type='text'
             name='last_name'
             value={form.last_name}
@@ -65,8 +66,8 @@ const Profile = () => {
           />
         </div>
         <div>
-          <label>email</label>
-          <input
+          <TextField
+            label='email'
             type='email'
             name='email'
             value={form.email}
@@ -76,7 +77,7 @@ const Profile = () => {
         <div>
           <h4> phone: {profile[0].phone}</h4>
         </div>
-        <button type='submit'>update</button>
+        <Button type='submit'>update</Button>
       </form>
     </div>
   );

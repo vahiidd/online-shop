@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { loginUser } from './loginSlice';
+import { Button, TextField } from '@material-ui/core';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,22 +26,26 @@ const Login = () => {
   return (
     <div>
       <Link to='/signUp'>
-        <button>signUp</button>
+        <Button>signUp</Button>
       </Link>
       <form onSubmit={submit}>
-        <input
-          name='username'
-          placeholder='username'
-          value={form.username}
-          onChange={changeHandler}
-        />
-        <input
-          name='password'
-          placeholder='password'
-          value={form.password}
-          onChange={changeHandler}
-        />
-        <button type='submit'>Login</button>
+        <div>
+          <TextField
+            name='username'
+            placeholder='username'
+            value={form.username}
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <TextField
+            name='password'
+            placeholder='password'
+            value={form.password}
+            onChange={changeHandler}
+          />
+          <Button type='submit'>Login</Button>
+        </div>
       </form>
     </div>
   );
